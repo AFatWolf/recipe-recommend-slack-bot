@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/base.css' %}">
+    <title>Team Maker Sample</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">
+        Team Maker Sample
+      </a>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <h1>Let's make teams!</h1>
+        <form action="{% url 'send' %}" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="message">Send a test message to Slack.</label>
+            <textarea id="message" name="message" class="form-control" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Send</button>
+          </div>
+        </form>
+      </div>
+
+      {% for team in teams %}
+      <div class="card mb-3">
+        <div class="card-header">Team: {{ team.index }}</div>
+        <div class="card-body">
+          {% for student in team.students %}
+          <h5>{{student.user_name}}</h5>
+          <p class="card-text">{{student.message}}</p>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+
+      <a class="btn btn-success" href="{% url 'announce' %}">Announce the result and Reset.</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+  </body>
+
+</html>
