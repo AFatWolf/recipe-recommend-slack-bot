@@ -8,7 +8,7 @@ import json
 from .models import Student
 
 WEBHOOK_URL = 'https://hooks.slack.com/services/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'
-VERIFICATION_TOKEN = 'https://hooks.slack.com/services/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'
+VERIFICATION_TOKEN = 'HtrHxcXNVVbW9QlNwWwRH04Y'
 NUM_TEAMS = 7
 
 def index(request):
