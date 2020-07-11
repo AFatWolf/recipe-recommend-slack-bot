@@ -50,8 +50,12 @@ def join(request):
     student.save()
 
     result = {
-        'text': '<@{}> Thank you!'.format(user_id),
-        'response_type': 'in_channel'
+        'text': '_Hi_ <@{}>! *かっこいい* ~おまえ~.\n\
+            Have a drink?\n\
+            >This is quoted text\n\
+            >This is still quoted text.\n\
+            Let\' start `coding` :smile:'.format(user_id),
+        'response_type': 'in_channel',
     }
     
     return JsonResponse(result)
@@ -87,7 +91,6 @@ def announce(request):
 
     Student.objects.all().delete()
     return redirect(index)
-
 
 def postMessage(data):
     headers = {
