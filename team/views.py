@@ -32,7 +32,7 @@ def team_help (request):
             cmd_lists+= '   •`'+cmd+'`\n'
 
         result = {
-            'text': ('Hi, <@{}>! Here are the commands that you can try: \n'+ cmd_lists+'Typle `/team_help command` for help about the command.').format(user_id),
+            'text': ('Hi, <@{}>! Here are the commands that you can try: \n'+ cmd_lists+'Type `/team_help command` for help about the command.').format(user_id),
             'response_type': 'in_channel'
         }
     elif (text in list_of_commands_name):
