@@ -16,10 +16,10 @@ def searchCookpad(ingredientsLst):
         htmlContent = "Unable to make GET request"
     return htmlContent
 
-def getRecipeLst(self, htmlContent):
+def getRecipeLst(htmlContent):
     lst = []
     html = bs(htmlContent, 'html.parser')
     recipe_list = html.find_all("a", "flex items-center")
     for r in recipe_list:
-        lst.append(r.get('href'))
-    return lst    
+        lst.append("https://cookpad.com/" + r.get('href'))
+    return lst
