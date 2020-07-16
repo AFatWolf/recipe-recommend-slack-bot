@@ -11,8 +11,9 @@ from .command_info import commands
 #HIEU AND HAI
 from .models import Student
 
-WEBHOOK_URL = 'https://hooks.slack.com/services/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'
-VERIFICATION_TOKEN = 'HtrHxcXNVVbW9QlNwWwRH04Y'
+#Hieu changes to webhooks and token of Team task
+WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+VERIFICATION_TOKEN = 'StcVP7qHCrkoleAzGlSJs2ho'
 NUM_TEAMS = 7
 #HIEU AND HAI help function-----
 @csrf_exempt
