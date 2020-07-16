@@ -6,7 +6,7 @@ def sendCookpadRequest(url):
     req = requests.get(url, headers=headers)
     return req
 
-def searchCookpad(self, ingredientsLst):
+def searchCookpad(ingredientsLst):
     url = "https://cookpad.com/us/search/" + "%20".join(ingredientsLst)
     # User-Agent in header
     req = sendCookpadRequest(url)
