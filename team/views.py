@@ -4,13 +4,49 @@ from django.core.exceptions import SuspiciousOperation
 from django.views.decorators.csrf import csrf_exempt
 import urllib
 import json
-
+#HIEU AND HAI
+from .command_info import *
+from .command_info import list_of_commands_name
+from .command_info import commands
+#HIEU AND HAI
 from .models import Student
 
 WEBHOOK_URL = 'https://hooks.slack.com/services/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'
 VERIFICATION_TOKEN = 'HtrHxcXNVVbW9QlNwWwRH04Y'
 NUM_TEAMS = 7
+#HIEU AND HAI help function-----
+@csrf_exempt
+def team_help (request):
+    if request.method != 'POST':
+        return JsonResponse({})
+    
+    if request.POST.get('token') != VERIFICATION_TOKEN:
+        raise SuspiciousOperation('Invalid request.')
+    user_name = request.POST['user_name']
+    user_id = request.POST['user_id']
+    text = request.POST['text']
+    if (text ==''):
+        cmd_lists =''
+        for cmd in list_of_commands_name :
+            cmd_lists+= '   •`'+cmd+'`\n'
 
+        result = {
+            'text': ('Hi, <@{}>! Here are the commands that you can try: \n'+ cmd_lists+'Typle `/team_help command` for help about the command.').format(user_id),
+            'response_type': 'in_channel'
+        }
+    elif (text in list_of_commands_name):
+        output = commands[text].formatted_info()
+        result = {
+            'text': output,
+            'response_type': 'in_channel'
+        }
+    else:
+        result = {
+            'text': ('There are no such command. Here are the commands that you can try: \n'+ cmd_lists+'Typle `\help(command`) for help about the command)'),
+            'response_type': 'in_channel'
+        }   
+    return JsonResponse(result)
+#end help function HIEU AND HAI 
 def index(request):
     teams = []
     for i in range(NUM_TEAMS):

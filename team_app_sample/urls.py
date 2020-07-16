@@ -23,4 +23,5 @@ urlpatterns = [
     path('send', team_views.send, name='send'),
     path('announce', team_views.announce, name='announce'),
     path('api/join', team_views.join, name='api_join'),
+    path('api/team_help', team_views.team_help, name='api_team_help'), #HIEU AND HAI
 ]
