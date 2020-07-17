@@ -87,12 +87,16 @@ def join(request):
     user_id = request.POST['user_id']
     text = request.POST['text']
 
+    ingredients = text.split(" ")
+    cook = Cookpad(ingredients)
+    recipes = cook.getRecipeLst()
+
     student = Student(user_name=user_name, user_id=user_id, message=text)
     student.group = Student.objects.all().count() % NUM_TEAMS
     student.save()
 
     result = {
-        'text': '_Hi_ <@{}>! Here is a recipe that you can try by yourself: \n{}'.format(user_id, "https://cookpad.com/us/recipes/12890440-lemon-and-garlic-baked-mediterranean-chicken?via=search&search_term=chicken%20garlic"),
+        'text': '_Hi_ <@{}>! Here is a recipe that you can try by yourself: \n{}'.format(user_id, recipes),
         'response_type': 'in_channel',
     }
     
