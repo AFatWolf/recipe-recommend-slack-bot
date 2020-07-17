@@ -121,7 +121,6 @@ def getRecipe(request):
         }
     return JsonResponse(result)
 
-
 def announce(request):
     for i in range(NUM_TEAMS):
         blocks = []
