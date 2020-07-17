@@ -96,7 +96,7 @@ def join(request):
     student.save()
 
     result = {
-        'text': '_Hi_ <@{}>! Here is a recipe that you can try by yourself: \n{}'.format(user_id, recipes),
+        'text': '_Hi_ <@{}>! Here is a recipe that you can try by yourself: \n{}'.format(user_id, recipes[random.randrange(0, len(list))]),
         'response_type': 'in_channel',
     }
     
