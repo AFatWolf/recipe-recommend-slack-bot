@@ -11,8 +11,8 @@ from .command_info import commands
 #HIEU AND HAI
 from .models import Student
 # 
-# from team.cookpad import *
-# import random
+from team.cookpad import *
+import random
 
 #Hieu changes to webhooks and token of Team task
 WEBHOOK_URL = 'https://hooks.slack.com/services/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'
@@ -118,6 +118,38 @@ def getRecipe(request):
         result = {
             'text': 'Hi <@{}>! Here is a recipe that you can try by yourself:{}\n'.format(user_id, choosenLink),
             'response_type': 'in_channel',
+
+        }
+    return JsonResponse(result)
+
+def recipe(request):
+    if request.method != 'POST':
+        return JsonResponse({})
+    if request.POST.get('token') != VERIFICATION_TOKEN:
+        raise SuspiciousOperation('Invalid request.')
+    user_name = request.POST['user_name']
+    user_id = request.POST['user_id']
+    text = request.POST['text']
+    ingredients = text.split(" ")
+    cook = Cookpad(ingredients)
+    recipes = cook.getRecipeLst()
+    student = Student(user_name=user_name, user_id=user_id, message=text)
+    student.group = Student.objects.all().count() % NUM_TEAMS
+    student.save()
+    if(recipes):
+        result = {
+         'text': '_Hi_ <@{}>! \n\
+            Here are your recipes:\n\
+             {}\n\
+            Hope you like them'.format(user_id,recipes),
+        'response_type': 'in_channel',
+        }
+    else:
+        result = {
+         'text': '_Hi_ <@{}>! \n\
+            It seems there are no recipes with those ingrefients\n\
+            I recommend typing the command /team_help in case you did not format your request properly.'.format(user_id),
+        'response_type': 'in_channel',
         }
     return JsonResponse(result)
 
