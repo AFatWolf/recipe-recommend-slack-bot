@@ -19,6 +19,7 @@ WEBHOOK_URL = 'https://hooks.slack.com/services/T012CLJDE66/B016D7XLAEB/S9Oyqzde
 VERIFICATION_TOKEN = 'StcVP7qHCrkoleAzGlSJs2ho'
 NUM_TEAMS = 7
 #HIEU AND HAI help function-----
+
 @csrf_exempt
 def team_help (request):
     if request.method != 'POST':
