@@ -11,8 +11,9 @@ from .command_info import commands
 #HIEU AND HAI
 from .models import Student
 
-WEBHOOK_URL = 'https://hooks.slack.com/services/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'
-VERIFICATION_TOKEN = 'HtrHxcXNVVbW9QlNwWwRH04Y'
+#Hieu changes to webhooks and token of Team task
+WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+VERIFICATION_TOKEN = 'StcVP7qHCrkoleAzGlSJs2ho'
 NUM_TEAMS = 7
 #HIEU AND HAI help function-----
 @csrf_exempt
@@ -31,7 +32,7 @@ def team_help (request):
             cmd_lists+= '   •`'+cmd+'`\n'
 
         result = {
-            'text': ('Hi, <@{}>! Here are the commands that you can try: \n'+ cmd_lists+'Typle `/team_help command` for help about the command.').format(user_id),
+            'text': ('Hi, <@{}>! Here are the commands that you can try: \n'+ cmd_lists+'Type `/team_help command` for help about the command.').format(user_id),
             'response_type': 'in_channel'
         }
     elif (text in list_of_commands_name):
