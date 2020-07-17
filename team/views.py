@@ -92,7 +92,7 @@ def join(request):
     student.save()
 
     result = {
-        'text': '_Hi_ <@{}>! Here is a recipe that you can try by yourself: \n{}'.format(user_id, "https://cookpad.com/us/recipes/12890440-lemon-and-garlic-baked-mediterranean-chicken?via=search&search_term=chicken%20garlic"),
+        'text': '_Hi_ <@{}>! Here is a recipe that you can try by yourself: \n{}'.format(user_id, recipes[random.randrange(0, len(list))]),
         'response_type': 'in_channel',
     }
     
