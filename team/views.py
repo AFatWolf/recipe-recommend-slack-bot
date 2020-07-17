@@ -80,8 +80,8 @@ def join(request):
     if request.method != 'POST':
         return JsonResponse({})
     
-    # if request.POST.get('token') != VERIFICATION_TOKEN:
-    #     raise SuspiciousOperation('Invalid request.')
+    if request.POST.get('token') != VERIFICATION_TOKEN:
+        raise SuspiciousOperation('Invalid request.')
     
     user_name = request.POST['user_name']
     user_id = request.POST['user_id']
