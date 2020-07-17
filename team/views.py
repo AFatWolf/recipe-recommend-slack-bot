@@ -47,6 +47,7 @@ def team_help (request):
         }   
     return JsonResponse(result)
 #end help function HIEU AND HAI 
+
 def index(request):
     teams = []
     for i in range(NUM_TEAMS):
