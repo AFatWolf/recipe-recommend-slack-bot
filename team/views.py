@@ -103,8 +103,8 @@ def getRecipe(request):
     if request.method != 'POST':
         return JsonResponse({})
     
-    # if request.POST.get('token') != VERIFICATION_TOKEN:
-    #     raise SuspiciousOperation('Invalid request.')
+    if request.POST.get('token') != VERIFICATION_TOKEN:
+        raise SuspiciousOperation('Invalid request.')
     
     ingredientsLst = request.POST.get('text')
     if not ingredientsLst:
