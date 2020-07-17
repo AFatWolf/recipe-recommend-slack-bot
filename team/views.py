@@ -10,6 +10,9 @@ from .command_info import list_of_commands_name
 from .command_info import commands
 #HIEU AND HAI
 from .models import Student
+# 
+from team.cookpad import *
+import random
 
 #Hieu changes to webhooks and token of Team task
 WEBHOOK_URL = 'https://hooks.slack.com/services/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'
@@ -97,6 +100,30 @@ def join(request):
     }
     
     return JsonResponse(result)
+
+@csrf_exempt
+def getRecipe(request):
+    if request.method != 'POST':
+        return JsonResponse({})
+    
+    # if request.POST.get('token') != VERIFICATION_TOKEN:
+    #     raise SuspiciousOperation('Invalid request.')
+    
+    ingredientsLst = request.POST.get('text')
+    if not ingredientsLst:
+        result = {}
+    else:
+        cookpad = Cookpad(ingredientsLst.split(' '))
+        linkLst = cookpad.getRecipeLst()
+        choosenLink = linklst[random.randrange(0, len(linkLst))]
+
+        user_id = request.POST['user_id']
+        result = {
+            'text': 'Hi <@{}>! Here is a recipe that you can try by yourself:{}\n'.format(user_id, choosenLink),
+            'response_type': 'in_channel',
+        }
+    return JsonResponse(result)
+
 
 def announce(request):
     for i in range(NUM_TEAMS):
