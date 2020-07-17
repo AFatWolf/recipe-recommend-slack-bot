@@ -11,8 +11,8 @@ from .command_info import commands
 #HIEU AND HAI
 from .models import Student
 # 
-from team.cookpad import *
-import random
+# from team.cookpad import *
+# import random
 
 #Hieu changes to webhooks and token of Team task
 WEBHOOK_URL = 'https://hooks.slack.com/services/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'
