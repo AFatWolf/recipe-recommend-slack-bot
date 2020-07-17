@@ -98,30 +98,6 @@ def join(request):
     
     return JsonResponse(result)
 
-@csrf_exempt
-def getRecipe(request):
-    if request.method != 'POST':
-        return JsonResponse({})
-    
-    if request.POST.get('token') != VERIFICATION_TOKEN:
-        raise SuspiciousOperation('Invalid request.')
-    
-    ingredientsLst = request.POST.get('text')
-    if not ingredientsLst:
-        result = {}
-    else:
-        cookpad = Cookpad(ingredientsLst.split(' '))
-        linkLst = cookpad.getRecipeLst()
-        choosenLink = linklst[random.randrange(0, len(linkLst))]
-
-        user_id = request.POST['user_id']
-        result = {
-            'text': 'Hi <@{}>! Here is a recipe that you can try by yourself:{}\n'.format(user_id, choosenLink),
-            'response_type': 'in_channel',
-
-        }
-    return JsonResponse(result)
-
 def recipe(request):
     if request.method != 'POST':
         return JsonResponse({})

@@ -24,5 +24,5 @@ urlpatterns = [
     path('announce', team_views.announce, name='announce'),
     path('api/join', team_views.join, name='api_join'),
     path('api/team_help', team_views.team_help, name='api_team_help'), #HIEU AND HAI
-    path('api/recipe', team_views.getRecipe, name='api_get_Recipe'),
+    path('api/recipe', team_views.recipe, name='api_get_Recipe'),
 ]
