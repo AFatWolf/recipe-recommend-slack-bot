@@ -98,7 +98,7 @@ def join(request):
     result = {
         'text': '_Hi_ <@{}>! Here is a recipe that you can try by yourself: \n{}'.format(user_id, recipes[random.randrange(0, len(recipes))]),
         'response_type': 'in_channel',
-    } 
+    }
     
     return JsonResponse(result)
 
@@ -123,7 +123,7 @@ def recipe(request):
          'text': '_Hi_ <@{}>! \n\
             Here are your recipes:\n\
              {}\n\
-            Hope you like them'.format(user_id,recipes[random.randrange(0, len(recipes)),
+            Hope you like them'.format(user_id,recipes[random.randrange(0, len(recipes)])),
         'response_type': 'in_channel',
         }
     else:
