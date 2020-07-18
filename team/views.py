@@ -123,7 +123,7 @@ def recipe(request):
          'text': '_Hi_ <@{}>! \n\
             Here are your recipes:\n\
              {}\n\
-            Hope you like them'.format(user_id,recipes[random.randrange(0, len(recipes)])),
+            Hope you like them'.format(user_id, recipes[random.randrange(0, len(recipes))]),
         'response_type': 'in_channel',
         }
     else:
