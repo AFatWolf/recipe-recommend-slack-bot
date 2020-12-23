@@ -1,7 +1,7 @@
 # Command
-HELP FUNCTION NOTE
-changes:
-    add command_info.py
-    add url in urls.py
-    add help function in views.py
-    add help command on slack
+HELP FUNCTION NOTE  
+changes:  
+    + add command_info.py
+    + add url in urls.py
+    + add help function in views.py
+    + add help command on slack
